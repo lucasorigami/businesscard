@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    background-color: black;
+}
+
+
+#header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 10;
+  height: 10px;
+  width: 100%;
+  background-color: #00000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#header a {
+  color: white;
+  text-decoration: none;
+}
+/* ThreeJS container takes full screen */
+#three-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Bottom 30% overlay */
+#bottom {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;       /* THIS is the key: 30% of the viewport */
+    /* background: rgba(255, 255, 255); */
+    z-index: 10;        /* higher z-index = shown ABOVE Three.js */
+    box-sizing: border-box;
+    transform: translateY(100%);   /* start hidden below screen */
+    transition: transform 0.9s 0.6s ease-in-out;
+    /* margin: 0 auto 0 auto; */
+    /* animation-delay: 1s; */
+    /* z-index: 10; */
+    align-items: end;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+#panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #0f0f0f;
+  height: 100%;
+  width: 95%;
+  max-width: 600px;
+  border-radius: 8% 8% 0 0;
+  color: rgb(111, 111, 111);
+  font-size: 1rem;
+  padding-inline: 10%;
+  font-family: monospace;
+  font-weight: lighter;
+}
+
+#panel p {
+  text-align: center;
+}
+
+.button {
+    background: #00ff00;
+    color: rgb(255, 255, 255);
+    padding: 14px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.button:active {
+    transform: scale(0.96);
+}
+
+#glow {
+    position: absolute;
+    top: -20vh;           /* move the glow upward */
+    left: 0;
+    width: 100vw;
+    height: 120vh;        /* extend downward for smooth fade */
+    pointer-events: none;
+    z-index: 2;
+
+    opacity: 0;
+
+    background: radial-gradient(
+        circle at 50% 30%,       /* <- glow center in top third */
+        rgba(0, 255, 0, 0.4) 0%, /* bright green core */
+        rgba(0, 255, 0, 0.15) 20%, 
+        rgba(0, 255, 0, 0.05) 40%,
+        rgba(0, 255, 0, 0) 75%
+    );
+
+    transition: opacity 1.4s ease-out;
+}
+
+
+#radial-gradient {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2; /* on top of three.js, under UI */
+
+    /* initial invisible state */
+    opacity: 0;
+    background: radial-gradient(circle, rgb(0, 255, 0) 0%, rgba(255,255,255,0) 60%);
+}
+
+
+.button-close {
+    /* position: absolute; */
+    
+    margin: 8px;
+    /* right: 16px; */
+    /* height: 40px; */
+    width: auto;
+    padding: 10px;
+    border-radius: 100px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background 0.2s, color 0.2s;
+    background-color: #252525;
+    color: #fff;
+}
+
+
+
+
+.button-close:hover { 
+  color: #ababab; 
+}
+
+.button-close:active { 
+  transform: scale(0.98); 
+}
+
+
+.input-close {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4b4b4b;       /* same as .button-close */
+    border: none;
+    border-radius: 100px;             /* match .button-close pill shape */
+    padding: 10px 16px;
+    margin: 0 0;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: background 0.2s, color 0.2s;
+    margin: 50px 0 10px 0;
+
+}
+
+.input-close::placeholder {
+    color: #ababab;                  /* match hover color of .button-close */
+}
+
+.input-close:focus {
+    background-color: #333333;       /* slightly darker on focus */
+    color: #fff;
+}
+
+
+/* .button-close:focus { 
+  outline: 2px solid #222; 
+  outline-offset: 2px; 
+} */
+
+
+    </style>
+    <script type="module" crossorigin src="/assets/index-BuC56Byu.js"></script>
+  </head>
+  <body>
+    <!-- <div id="header"><a href="lucaszuidema.com">{LZ}</a></div> -->
+    <div id="bottom">
+      <div id="panel">
+        <p><span>^^^</span><br>click on the card to save me in your contacts</p>
+          <!-- <div class="button-close">Save Contacts</div> -->
+          <input type="email" placeholder="Enter your email" class="input-close" />
+          <div class="button-close">stay up to date</div>
+
+        <!-- <input> -->
+        <!-- <p>sign up for the newsletter</p> -->
+        <!-- <button class="button">hi</button> -->
+      </div>
+    </div>
+    <div id="glow"></div>
+    <div id="radial-gradient"></div>
+  </body>
+</html>
