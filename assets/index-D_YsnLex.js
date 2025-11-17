@@ -3948,4 +3948,11 @@ void main() {
     radial-gradient(circle at bottom,
       rgba(0,255,0,${s}) 0%,
       rgba(255,255,255,0) ${a}%)
-  `}function no(i){i.preventDefault();let e,t;i.touches&&i.touches.length>0?(e=i.touches[0].clientX,t=i.touches[0].clientY):(e=i.clientX,t=i.clientY),kr.x=e/window.innerWidth*2-1,kr.y=-(t/window.innerHeight)*2+1,eo.setFromCamera(kr,$s),eo.intersectObjects([gn]).length>0&&(gp(),setTimeout(()=>{vp()},300))}function gp(){const i=document.getElementById("glow");i.style.transition="none",i.style.opacity=0,requestAnimationFrame(()=>{i.style.transition="opacity 2s ease-out",i.style.opacity=1,setTimeout(()=>{i.style.opacity=0},500)})}function vp(){const i=document.createElement("a");i.href="/businesscard/contact.vcf",i.download="contact.vcf",i.click()}
+  `}function no(i){i.preventDefault();let e,t;i.touches&&i.touches.length>0?(e=i.touches[0].clientX,t=i.touches[0].clientY):(e=i.clientX,t=i.clientY),kr.x=e/window.innerWidth*2-1,kr.y=-(t/window.innerHeight)*2+1,eo.setFromCamera(kr,$s),eo.intersectObjects([gn]).length>0&&(gp(),setTimeout(()=>{vp()},300))}function gp(){const i=document.getElementById("glow");i.style.transition="none",i.style.opacity=0,requestAnimationFrame(()=>{i.style.transition="opacity 2s ease-out",i.style.opacity=1,setTimeout(()=>{i.style.opacity=0},500)})}function vp(){const i=`
+BEGIN:VCARD
+VERSION:3.0
+FN:Lucas Zuidema
+TEL;TYPE=CELL:1234567890
+EMAIL:lucas@example.com
+END:VCARD
+`,e=new Blob([i],{type:"text/vcard"}),t=URL.createObjectURL(e);if(/Android/i.test(navigator.userAgent))window.location.href=t;else{const r=document.createElement("a");r.href=t,r.download="contact.vcf",r.click()}}
