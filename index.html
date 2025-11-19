@@ -247,7 +247,7 @@ body, html {
   color: rgb(111, 111, 111); /* initial gray */
   font-size: 1rem;
   transform: translateY(0);
-  animation: floatUp 5s ease-in-out infinite;
+  animation: floatUp 6s ease-in-out infinite;
 }
 
 .arrow:nth-child(1) {
@@ -265,10 +265,16 @@ body, html {
     transform: translateY(0);
     color: rgb(111, 111, 111);
   }
-  50% {
+  30% {
     transform: translateY(-8px);
     color: white;
   }
+
+  60% {
+    transform: translateY(0);
+    color: rgb(111, 111, 111); 
+  }
+
   100% {
     transform: translateY(0);
     color: rgb(111, 111, 111);
@@ -276,6 +282,71 @@ body, html {
 }
 
 
+/* Style Mautic form submit button like your .button-close div */
+.mauticform-wrapper .mauticform-button,
+#mauticform_input_signupgeneralnewsletter_submit {
+    margin: 8px;
+    padding: 10px 20px;          /* add horizontal padding for button text */
+    border-radius: 100px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    background-color: #252525;
+    color: #fff;
+    border: none;                /* remove default button border */
+    font-size: 16px;             /* match your original font size */
+    font-weight: 600;
+    outline: none;               /* remove default focus outline */
+    text-align: center;
+    font-family: monospace;
+    font-weight: lighter;
+}
+
+.mauticform-wrapper .mauticform-button:hover,
+#mauticform_input_signupgeneralnewsletter_submit:hover { 
+    color: #ababab; 
+}
+
+.mauticform-wrapper .mauticform-button:active,
+#mauticform_input_signupgeneralnewsletter_submit:active { 
+    transform: scale(0.98); 
+}
+
+
+/* Style all Mautic text/email inputs like your .input-close */
+.mauticform-wrapper .mauticform-input,
+#mauticform_input_signupgeneralnewsletter_email,
+#mauticform_input_signupgeneralnewsletter_f_name {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4b4b4b;       /* match your button */
+    border: none;
+    border-radius: 100px;             /* pill shape */
+    padding: 10px 16px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: background 0.2s, color 0.2s;
+    margin: 0px 0 0px 0;
+}
+
+.mauticform-wrapper .mauticform-input::placeholder,
+#mauticform_input_signupgeneralnewsletter_email::placeholder,
+#mauticform_input_signupgeneralnewsletter_f_name::placeholder {
+    color: #ababab;                  /* placeholder color */
+}
+
+.mauticform-wrapper .mauticform-input:focus,
+#mauticform_input_signupgeneralnewsletter_email:focus,
+#mauticform_input_signupgeneralnewsletter_f_name:focus {
+    background-color: #333333;       /* slightly darker on focus */
+    color: #fff;
+}
 
 /* .button-close:focus { 
   outline: 2px solid #222; 
@@ -284,16 +355,17 @@ body, html {
 
 
     </style>
-    <script type="module" crossorigin src="/businesscard/assets/index-CmctuS9l.js"></script>
+    <script type="module" crossorigin src="/businesscard/assets/index-BbvR4yxz.js"></script>
   </head>
   <body>
     <!-- <div id="header"><a href="lucaszuidema.com">{LZ}</a></div> -->
     <div id="bg-glow"></div>
     <div id="bottom">
       <div id="panel">
-        <p><span class="arrow">^</span><span class="arrow">^</span><span class="arrow">^</span><br>click on the card to save me in your contacts</p>
+        <p><span class="arrow">^</span><span class="arrow">^</span><span class="arrow">^</span><br>click on my card to save me in your contacts</p>
           <!-- <div class="button-close">Save Contacts</div> -->
           <div id="newsletter-form">
+              <script type="text/javascript" src="//send.lucaszuidema.com/form/generate.js?id=1"></script>
           <input type="email" placeholder="Enter your email" class="input-close" />
           <div class="button-close" id="submit-form">stay up to date</div>
           </div>
