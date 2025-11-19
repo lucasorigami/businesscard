@@ -3952,7 +3952,9 @@ void main() {
 BEGIN:VCARD
 VERSION:3.0
 FN:Lucas Zuidema
-TEL;TYPE=CELL:1234567890
-EMAIL:lucas@example.com
+TITLE:Graphic Designer
+EMAIL;TYPE=WORK:info@lucaszuidema.com
+X-SOCIALPROFILE;type=instagram:https://instagram.com/lucasdesigns
+X-SOCIALPROFILE;type=linkedin:https://www.linkedin.com/in/lucaszuidema
 END:VCARD
 `,e=new Blob([i],{type:"text/vcard"}),t=URL.createObjectURL(e);if(/Android/i.test(navigator.userAgent))window.location.href=t;else{const r=document.createElement("a");r.href=t,r.download="contact.vcf",r.click()}}
