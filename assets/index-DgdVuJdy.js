@@ -3964,11 +3964,11 @@ END:VCARD
       <p style="color: white">
       Don't forget to confirm your email... 
       </p>
-    `,i.style.opacity=1},300)});document.getElementById("mauticform_signupgeneralnewsletter");document.addEventListener("mauticFormSubmit",function(i){if(i.detail&&i.detail.success){Oo();const e=document.getElementById("newsletter-form");e.style.opacity=0,setTimeout(()=>{e.innerHTML=`
-              <p style="color:white;text-align:center;">
-                thank you, I'll talk to you soon!
-              </p>
-              <p style="color:white;text-align:center;">
-                Don't forget to confirm your email...
-              </p>
-            `,e.style.opacity=1},300)}});
+    `,i.style.opacity=1},300)});document.getElementById("mauticform_signupgeneralnewsletter");document.addEventListener("DOMContentLoaded",()=>{const i=setInterval(()=>{document.getElementById("mauticform_signupgeneralnewsletter")&&(clearInterval(i),document.addEventListener("mauticFormSubmit",function(t){if(t.detail&&t.detail.formId==1&&t.detail.success){console.log("Mautic form submitted successfully!"),Oo();const n=document.getElementById("newsletter-form");n.style.opacity=0,setTimeout(()=>{n.innerHTML=`
+                <p style="color:white;text-align:center;">
+                  thank you, I'll talk to you soon!
+                </p>
+                <p style="color:white;text-align:center;">
+                  Don't forget to confirm your email...
+                </p>
+              `,n.style.opacity=1},300)}}))},100)});
