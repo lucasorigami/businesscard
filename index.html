@@ -55,7 +55,7 @@ body, html {
     /* background: rgba(255, 255, 255); */
     z-index: 10;        /* higher z-index = shown ABOVE Three.js */
     box-sizing: border-box;
-    transform: translateY(100%);   /* start hidden below screen */
+    transform: translateY(100%); 
     transition: transform 0.9s 0.6s ease-in-out;
     /* margin: 0 auto 0 auto; */
     /* animation-delay: 1s; */
@@ -355,7 +355,7 @@ body, html {
 
 
     </style>
-    <script type="module" crossorigin src="/businesscard/assets/index-DarQ9ZwR.js"></script>
+    <script type="module" crossorigin src="/businesscard/assets/index-DWYt_gdu.js"></script>
   </head>
   <body>
     <!-- <div id="header"><a href="lucaszuidema.com">{LZ}</a></div> -->
@@ -366,39 +366,93 @@ body, html {
           <!-- <div class="button-close">Save Contacts</div> -->
           <div id="newsletter-form">
 
+
+<div id="mauticform_container">
 <script>
+  
 if (typeof MauticFormCallback === 'undefined') {
     var MauticFormCallback = {};
 }
 
 MauticFormCallback['signupgeneralnewsletter'] = {
-    onResponse: function(response) {
-        if (response.success) {
-            flashBackgroundGlow(); // Three.js background glow
+    onLoad: function(form) {
+        console.log("Form loaded:", form);
+    },
 
-            const formContainer = document.getElementById("newsletter-form");
+    onValidate: function(form) {
+        // Keep default validation, don't change submit button
+        // Returning NULL proceeds with default validation
+        return null;
+    },
+
+    onValidateEnd: function(isFormValid) {
+        if (isFormValid) {
+            flashBackgroundGlow();
+        } else {
+            flashBackgroundGlow("red");
+        }
+    },
+
+    onErrorMark: function(fieldValidationObject) {
+        if (!fieldValidationObject.valid) {
+            // Optional: highlight the field itself
+            const el = document.getElementById(fieldValidationObject.containerId);
+            if (el) el.style.borderColor = "red";
+
+            // Trigger red glow for any field errors
+            flashBackgroundGlow("red");
+        }
+        // return null to keep default error message behavior
+        return null;
+    },
+
+    onErrorClear: function(fieldContainerId) {
+        const el = document.getElementById(fieldContainerId);
+        if (el) el.style.borderColor = ""; // reset
+        return null;
+    },
+
+    onResponse: function(response) {
+    const submitButton = document.querySelector('#mauticform_signupgeneralnewsletter_submit');
+    if (submitButton) submitButton.textContent = "Stay up to date";
+
+    // Only show thank-you if the form actually succeeded
+    if (response.success) {
+        const formContainer = document.getElementById("newsletter-form");
+        if (formContainer) {
+            // Fade out the form
             formContainer.style.opacity = 0;
+
             setTimeout(() => {
                 formContainer.innerHTML = `
-                    <p style="color: white; text-align: center;">
-                        thank you, I'll talk to you soon!
-                    </p>
+                  <p style="color: white">
+                    thank you, I'll talk to you soon!
+                  </p>
+                  <p style="color: white">
+                    Don't forget to confirm your email...
+                  </p>
                 `;
+
+                // Fade in the thank-you text
                 formContainer.style.opacity = 1;
-            }, 300);
-        } else {
-          console.error(error)
+            }, 300); // match fade duration
         }
-        // Return false to let Mautic handle the actual submission & success behavior
-        return false;
     }
+
+    return true;
+}
+
 };
+
+
+
+
 </script>
 
 
 
-<script type="text/javascript" src="//send.lucaszuidema.com/form/generate.js?id=1"></script>
-
+<script type="text/javascript" src="https://send.lucaszuidema.com/form/generate.js?id=1"></script>
+</div>
           <!-- <input type="email" placeholder="Enter your email" class="input-close" /> -->
           <!-- <div class="button-close" id="submit-form">stay up to date</div> -->
           </div>
@@ -409,6 +463,6 @@ MauticFormCallback['signupgeneralnewsletter'] = {
       </div>
     </div>
     <div id="glow"></div>
-    <div id="radial-gradient"></div>
+    <div id="radial-gradient"></div> -->
   </body>
 </html>
