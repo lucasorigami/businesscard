@@ -267,7 +267,7 @@ body, html {
   }
   30% {
     transform: translateY(-8px);
-    color: white;
+    color: rgb(152, 152, 152);
   }
 
   60% {
@@ -285,11 +285,11 @@ body, html {
 /* Style Mautic form submit button like your .button-close div */
 .mauticform-wrapper .mauticform-button,
 #mauticform_input_signupgeneralnewsletter_submit {
-    margin: 8px;
+    margin: 2%;
     padding: 10px 20px;          /* add horizontal padding for button text */
     border-radius: 100px;
     display: flex;
-    width: 100%;
+    width: 96%;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -365,9 +365,10 @@ body, html {
         <p><span class="arrow">^</span><span class="arrow">^</span><span class="arrow">^</span><br>click on my card to save me in your contacts</p>
           <!-- <div class="button-close">Save Contacts</div> -->
           <div id="newsletter-form">
+            <p style="color: white; margin-top: 30px;">sign up to my newsletter to stay up to date!</p>
+            
 
-
-<div id="mauticform_container">
+<!-- <div id="mauticform_container"> -->
 <script>
   
 if (typeof MauticFormCallback === 'undefined') {
@@ -455,7 +456,7 @@ MauticFormCallback['signupgeneralnewsletter'] = {
 </div>
           <!-- <input type="email" placeholder="Enter your email" class="input-close" /> -->
           <!-- <div class="button-close" id="submit-form">stay up to date</div> -->
-          </div>
+          <!-- </div> -->
 
         <!-- <input> -->
         <!-- <p>sign up for the newsletter</p> -->
