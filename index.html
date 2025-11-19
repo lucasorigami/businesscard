@@ -355,7 +355,7 @@ body, html {
 
 
     </style>
-    <script type="module" crossorigin src="/businesscard/assets/index-DgdVuJdy.js"></script>
+    <script type="module" crossorigin src="/businesscard/assets/index-DarQ9ZwR.js"></script>
   </head>
   <body>
     <!-- <div id="header"><a href="lucaszuidema.com">{LZ}</a></div> -->
@@ -365,7 +365,40 @@ body, html {
         <p><span class="arrow">^</span><span class="arrow">^</span><span class="arrow">^</span><br>click on my card to save me in your contacts</p>
           <!-- <div class="button-close">Save Contacts</div> -->
           <div id="newsletter-form">
-              <script type="text/javascript" src="//send.lucaszuidema.com/form/generate.js?id=1"></script>
+
+<script>
+if (typeof MauticFormCallback === 'undefined') {
+    var MauticFormCallback = {};
+}
+
+MauticFormCallback['signupgeneralnewsletter'] = {
+    onResponse: function(response) {
+        if (response.success) {
+            flashBackgroundGlow(); // Three.js background glow
+
+            const formContainer = document.getElementById("newsletter-form");
+            formContainer.style.opacity = 0;
+            setTimeout(() => {
+                formContainer.innerHTML = `
+                    <p style="color: white; text-align: center;">
+                        thank you, I'll talk to you soon!
+                    </p>
+                `;
+                formContainer.style.opacity = 1;
+            }, 300);
+        } else {
+          console.error(error)
+        }
+        // Return false to let Mautic handle the actual submission & success behavior
+        return false;
+    }
+};
+</script>
+
+
+
+<script type="text/javascript" src="//send.lucaszuidema.com/form/generate.js?id=1"></script>
+
           <!-- <input type="email" placeholder="Enter your email" class="input-close" /> -->
           <!-- <div class="button-close" id="submit-form">stay up to date</div> -->
           </div>
