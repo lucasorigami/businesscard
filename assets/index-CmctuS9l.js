@@ -3957,4 +3957,11 @@ EMAIL;TYPE=WORK:info@lucaszuidema.com
 X-SOCIALPROFILE;type=instagram:https://instagram.com/lucasdesigns
 X-SOCIALPROFILE;type=linkedin:https://www.linkedin.com/in/lucaszuidema
 END:VCARD
-`,e=new Blob([i],{type:"text/vcard"}),t=URL.createObjectURL(e);if(/Android/i.test(navigator.userAgent))window.location.href=t;else{const r=document.createElement("a");r.href=t,r.download="contact.vcf",r.click()}}
+`,e=new Blob([i],{type:"text/vcard"}),t=URL.createObjectURL(e);if(/Android/i.test(navigator.userAgent))window.location.href=t;else{const r=document.createElement("a");r.href=t,r.download="contact.vcf",r.click()}}function Sp(){const i=document.getElementById("bg-glow");i.style.animationPlayState="running",i.style.opacity=1,setTimeout(()=>{i.style.opacity=0,setTimeout(()=>{i.style.animationPlayState="paused"},800)},3e3)}document.getElementById("submit-form").addEventListener("click",()=>{Sp()});document.getElementById("submit-form").addEventListener("click",()=>{document.getElementById("panel");const i=document.getElementById("newsletter-form");i.style.opacity=0,setTimeout(()=>{i.innerHTML=`
+      <p>
+        thank you, I'll talk to you soon!
+      </p>
+      <p>
+      Don't forget to confirm your email... 
+      </p>
+    `,i.style.opacity=1},300)});

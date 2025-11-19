@@ -203,6 +203,79 @@ body, html {
     color: #fff;
 }
 
+#bg-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.8s ease-out;
+
+  /* mask the background with a radial glow shape */
+  -webkit-mask-image: radial-gradient(circle, white 0%, transparent 70%);
+  mask-image: radial-gradient(circle, white 0%, transparent 70%);
+
+  /* giant rainbow gradient for smooth movement */
+  background: linear-gradient(
+    90deg,
+    #ff0040,
+    #ff8000,
+    #ffee00,
+    #00ff6e,
+    #00c3ff,
+    #5a00ff,
+    #ff00c8,
+    #ff0040
+  );
+  background-size: 600% 600%;
+
+  animation: bgShift 4s linear infinite;
+  animation-play-state: paused;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+#newsletter-form {
+  transition: opacity 0.3s ease;
+}
+
+.arrow {
+  display: inline-block;
+  color: rgb(111, 111, 111); /* initial gray */
+  font-size: 1rem;
+  transform: translateY(0);
+  animation: floatUp 5s ease-in-out infinite;
+}
+
+.arrow:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.arrow:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.arrow:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    color: rgb(111, 111, 111);
+  }
+  50% {
+    transform: translateY(-8px);
+    color: white;
+  }
+  100% {
+    transform: translateY(0);
+    color: rgb(111, 111, 111);
+  }
+}
+
+
 
 /* .button-close:focus { 
   outline: 2px solid #222; 
@@ -211,16 +284,19 @@ body, html {
 
 
     </style>
-    <script type="module" crossorigin src="/businesscard/assets/index-DarQ9ZwR.js"></script>
+    <script type="module" crossorigin src="/businesscard/assets/index-CmctuS9l.js"></script>
   </head>
   <body>
     <!-- <div id="header"><a href="lucaszuidema.com">{LZ}</a></div> -->
+    <div id="bg-glow"></div>
     <div id="bottom">
       <div id="panel">
-        <p><span>^^^</span><br>click on the card to save me in your contacts</p>
+        <p><span class="arrow">^</span><span class="arrow">^</span><span class="arrow">^</span><br>click on the card to save me in your contacts</p>
           <!-- <div class="button-close">Save Contacts</div> -->
+          <div id="newsletter-form">
           <input type="email" placeholder="Enter your email" class="input-close" />
-          <div class="button-close">stay up to date</div>
+          <div class="button-close" id="submit-form">stay up to date</div>
+          </div>
 
         <!-- <input> -->
         <!-- <p>sign up for the newsletter</p> -->
